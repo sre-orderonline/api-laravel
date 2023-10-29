@@ -11,5 +11,12 @@ jobs:
     runs-on: [self-hosted, Linux, X64, gcp]
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Set the 8-character commit code
+      id: commit_code
+      run: echo "::set-output name=commit_code::$(echo $GITHUB_SHA | cut -c1-8)"
+      shell: bash
+    
+    - name: Build and push the Docker image
+      run: |
+        docker build . --file Dockerfile --tag asia-southeast1-docker.pkg.dev/rf-asl-0/orderonline-prd-prod-aft-docker/api-laravel:${{ steps.commit_code.outputs.commit_code }}
+        docker push asia-southeast1-docker.pkg.dev/rf-asl-0/orderonline-prd-prod-aft-docker/api-laravel:${{ steps.commit_code.outputs.commit_code }}h  
