@@ -10,6 +10,18 @@ services:
       POSTGRES_DB: api-laravel
     volumes:
       - pg-data-api-laravel:/var/lib/postgresql/data
-
+  api-laravel:
+    image: api-laravel:dev-6
+    environment:
+      APP_NAME: "Laravel"
+      APP_KEY: "base64:x6V25eE4h4bFX1AdZGcLD8VGZsDN07EOB4ZBDLgl1ek="
+      DB_CONNECTION: "pgsql"
+      DB_HOST: "10.10.0.10"
+      DB_PORT: "5432"
+      DB_DATABASE: "api-laravel"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "P@ssw0rd"  
+    ports: 
+      - "8181:8181"
 volumes:
   pg-data-api-laravel:
