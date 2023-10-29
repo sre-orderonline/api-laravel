@@ -19,4 +19,4 @@ jobs:
     - name: Build and push the Docker image
       run: |
         docker build . --file Dockerfile --tag asia-southeast1-docker.pkg.dev/rf-asl-0/orderonline-prd-prod-aft-docker/api-laravel:${{ steps.commit_code.outputs.commit_code }}
-        docker push asia-southeast1-docker.pkg.dev/rf-asl-0/orderonline-prd-prod-aft-docker/api-laravel:${{ steps.commit_code.outputs.commit_code }}h  
+        docker push asia-southeast1-docker.pkg.dev/rf-asl-0/orderonline-prd-prod-aft-docker/api-laravel:${{ steps.commit_code.outputs.commit_code }}
